@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteInvoice, State } from "@/app/lib/actions";
+import { deleteInvoice } from "@/app/lib/actions";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useActionState } from "react";
@@ -31,10 +31,7 @@ export function UpdateInvoice({ id }: { id: string }) {
 export function DeleteInvoice({ id }: { id: string }) {
    const initialState: { message: string | undefined } = { message: undefined };
    const deleteInvoiceWithId = deleteInvoice.bind(null, id);
-   const [state, formAction] = useActionState(
-      deleteInvoiceWithId,
-      initialState
-   );
+   const [, formAction] = useActionState(deleteInvoiceWithId, initialState);
 
    return (
       <form action={formAction}>
